@@ -1,6 +1,6 @@
 NAME		= philo
 CC			= cc
-CFLAGS		= -g3#-Wall -Wextra -Werror -g3
+CFLAGS		= -g3 -pthread -Wall -Wextra -Werror
 
 OBJ_DIR		= $(BUILD_DIR)/obj
 BUILD_DIR	= build
@@ -20,7 +20,11 @@ FILE_S1		= parser.c init.c
 PATH_S1		= src/stage_1/
 STAGE_1		= $(addprefix $(PATH_S1), $(FILE_S1))
 
-SRC			= $(MAIN) $(STAGE_1)
+FILE_S2		= check_stop.c ft_thread.c simulator.c start_and_end.c status.c utils.c
+PATH_S2		= src/stage_2/
+STAGE_2		= $(addprefix $(PATH_S2), $(FILE_S2))
+
+SRC			= $(MAIN) $(STAGE_1) $(STAGE_2)
 
 OBJ			= $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 04:24:52 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/26 02:54:54 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/28 23:44:11 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_philo
 {
+	int				nb;
 	time_t			time_to_die;
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
@@ -39,11 +40,13 @@ typedef struct s_philo
 	int				l_fork;
 	int				r_fork;
 	int				eat;
+	t_mtx			type_lock;
 }	t_philo;
 
 typedef struct s_table
 {
 	t_philo		*philo;
+	int			time_control;
 	int			philo_nb;
 	int			times_must_eat;
 	time_t		time_start;
@@ -70,6 +73,7 @@ typedef enum e_status
 	EATING,
 	SLEEPING,
 	THINKING,
+	TAKEFORK,
 }	t_status;
 
 typedef enum e_mutex_mode
@@ -97,5 +101,11 @@ void	ft_thread(t_philo *p, void *(*f)(void *), void *d, t_thread_mode mode);
 void	ft_mutex(t_mtx *m, t_mutex_mode mode);
 bool	is_stop(void);
 void	ft_sleep(time_t time);
+void	*simulator(void *data);
+void	start(void);
+void	end(void);
+void	status(t_philo *p, t_status input_status, t_table *t);
+void	lock_fork(t_philo *p, t_table *t);
+time_t	phild_philo(t_philo *p, t_table *t);
 
 #endif

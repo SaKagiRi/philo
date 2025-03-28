@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 21:25:13 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/25 23:54:02 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/29 00:27:55 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ static void	puterr(char *str)
 
 void	clear(char	*msg)
 {
-	t_table	*t;
-
-	t = get_table();
 	if (msg)
 	{
 		puterr(msg);
@@ -34,5 +31,4 @@ void	clear(char	*msg)
 	else
 		exit(0);
 	exit(1);
-
 }

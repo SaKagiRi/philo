@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   start_and_end.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 23:13:42 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/29 00:28:09 by knakto           ###   ########.fr       */
+/*   Created: 2025/03/26 20:41:21 by knakto            #+#    #+#             */
+/*   Updated: 2025/03/26 20:49:04 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_malloc.h"
+#include "../../include/philo.h"
 
-static t_list	**get_t_list(void)
+void	start(void)
 {
-	static t_list	*ls;
+	int		i;
+	t_table	*t;
 
-	return (&ls);
-}
-
-void	ft_free(void)
-{
-	ft_lstclear(get_t_list(), free);
-}
-
-void	*ft_malloc(size_t count, size_t size)
-{
-	void	*ptr;
-
-	ptr = ft_calloc(count, size);
-	if (!ptr)
+	i = 0;
+	t = get_table();
+	while (i < t->philo_nb)
 	{
-		ft_free();
-		write(2, "Error: ft_malloc allocation failed.\n", 36);
-		exit(EXIT_FAILURE);
+		ft_thread(&t->philo[i], simulator, &t->philo[i], THREAD_CREATE);
+		i++;
 	}
-	ft_lstadd_back(get_t_list(), ft_lstnew(ptr));
-	return (ptr);
+}
+
+void	end(void)
+{
+	int		i;
+	t_table	*t;
+
+	i = 0;
+	t = get_table();
+	while (i < t->philo_nb)
+	{
+		ft_thread(&t->philo[i], NULL, NULL, THREAD_JOIN);
+		i++;
+	}
 }

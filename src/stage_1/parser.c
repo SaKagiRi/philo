@@ -6,13 +6,13 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:54:54 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/25 23:54:28 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/29 00:23:32 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-static bool	number_of_arg(int c, unsigned int min, unsigned int max)
+static bool	number_of_arg(unsigned int c, unsigned int min, unsigned int max)
 {
 	if (min > max || !c || !min || !max)
 		return (false);
@@ -57,7 +57,7 @@ static bool	range_int(char **v)
 	return (true);
 }
 
-static bool	util_setting(int c, char **v)
+static bool	util_setting(char **v)
 {
 	int		number;
 	int		i;
@@ -79,10 +79,7 @@ static bool	util_setting(int c, char **v)
 
 void	parser(int c, char **v)
 {
-	t_table	*t;
-
-	t = get_table();
 	if (!number_of_arg(c, 5, 6) || !only_number(v) || !range_int(v) \
-		|| !util_setting(c, v))
+		|| !util_setting(v))
 		clear("Error: Invalid input.");
 }
