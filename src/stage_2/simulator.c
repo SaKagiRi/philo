@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 00:05:40 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/29 00:27:09 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/29 00:58:28 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,19 @@ void	thinkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk(t_philo *p, t_table *t)
 	if (think < 0)
 		think = 0;
 	status(p, THINKING, t);
-	ft_sleep(think);
+	if (p->eat != t->times_must_eat || t->times_must_eat == -1)
+	{
+		ft_sleep(think);
+		return ;
+	}
+	ft_mutex(&t->must_eat_lock, MUTEX_LOCK);
+	t->current_must_eat_times++;
+	ft_mutex(&t->must_eat_lock, MUTEX_UNLOCK);
+	while (check_must_eat(t))
+		ft_sleep(100);
+	ft_mutex(&t->stop_lock, MUTEX_LOCK);
+	t->stop = true;
+	ft_mutex(&t->stop_lock, MUTEX_UNLOCK);
 }
 
 static void	eat_sleep_routine(t_philo *p, t_table *t)

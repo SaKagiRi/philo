@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 21:56:25 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/29 00:28:45 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/29 00:41:13 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	init_fork(t_table *t)
 		i++;
 	}
 	ft_mutex(&t->stop_lock, MUTEX_INIT);
+	ft_mutex(&t->must_eat_lock, MUTEX_INIT);
 }
 
 static void	init_value(t_table *t, int c, char **v)
@@ -58,6 +59,7 @@ static void	init_value(t_table *t, int c, char **v)
 	if (c == 6)
 		t->times_must_eat = atol(v[5]);
 	t->stop = false;
+	t->current_must_eat_times = 0;
 	t->time_start = get_time() + (t->philo_nb * 30);
 }
 

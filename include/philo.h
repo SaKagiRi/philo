@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 04:24:52 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/28 23:44:11 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/29 00:47:17 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_philo
 typedef struct s_table
 {
 	t_philo		*philo;
+	int			current_must_eat_times;
 	int			time_control;
 	int			philo_nb;
 	int			times_must_eat;
@@ -56,6 +57,7 @@ typedef struct s_table
 	bool		stop;
 	t_mtx		stop_lock;
 	t_mtx		meal_lock;
+	t_mtx		must_eat_lock;
 	t_mtx		*fork;
 }	t_table;
 
@@ -107,5 +109,6 @@ void	end(void);
 void	status(t_philo *p, t_status input_status, t_table *t);
 void	lock_fork(t_philo *p, t_table *t);
 time_t	phild_philo(t_philo *p, t_table *t);
+bool	check_must_eat(t_table *t);
 
 #endif
