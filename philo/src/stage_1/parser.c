@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:54:54 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/29 00:23:32 by knakto           ###   ########.fr       */
+/*   Updated: 2025/03/30 04:48:20 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static bool	util_setting(char **v)
 			return (false);
 		else if (i >= 2 && i <= 4 && !(number >= 60))
 			return (false);
-		else if (i == 5 && !(number >= 0))
+		else if (i == 5 && !(number > 0))
 			return (false);
 		i++;
 	}
