@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 00:05:40 by knakto            #+#    #+#             */
-/*   Updated: 2025/04/03 10:30:28 by knakto           ###   ########.fr       */
+/*   Updated: 2025/04/03 17:06:12 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ void	*simulator(void *data)
 	ft_mutex(&p->type_lock, MUTEX_UNLOCK);
 	if (t->times_must_eat == 0)
 		return (NULL);
+	ft_mutex(&t->meal_lock, MUTEX_LOCK);
 	p->last_meal = p->time_start;
+	ft_mutex(&t->meal_lock, MUTEX_UNLOCK);
 	time = phild_philo(p, t);
 	while (get_time() < p->time_start + time)
 		usleep(100);

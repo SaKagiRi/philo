@@ -1,6 +1,7 @@
 NAME		= philo
 CC			= cc
-CFLAGS		= -g3 -pthread -Wall -Wextra -Werror
+CFLAGS		= -g3 -pthread -Wall -Wextra -Werror -DDEBUG=$(DEBUG)
+DEBUG		= 1
 
 OBJ_DIR		= $(BUILD_DIR)/obj
 BUILD_DIR	= build
@@ -20,7 +21,7 @@ FILE_S1		= parser.c init.c
 PATH_S1		= src/stage_1/
 STAGE_1		= $(addprefix $(PATH_S1), $(FILE_S1))
 
-FILE_S2		= check_stop.c ft_thread.c simulator.c start_and_end.c status.c utils.c
+FILE_S2		= check_stop.c ft_thread.c simulator.c start_and_end.c status.c utils.c reaper.c
 PATH_S2		= src/stage_2/
 STAGE_2		= $(addprefix $(PATH_S2), $(FILE_S2))
 

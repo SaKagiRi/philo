@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 04:24:52 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/29 00:47:17 by knakto           ###   ########.fr       */
+/*   Updated: 2025/04/03 16:46:52 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef enum e_status
 	SLEEPING,
 	THINKING,
 	TAKEFORK,
+	CHECK_DIE,
 }	t_status;
 
 typedef enum e_mutex_mode
@@ -110,5 +111,7 @@ void	status(t_philo *p, t_status input_status, t_table *t);
 void	lock_fork(t_philo *p, t_table *t);
 time_t	phild_philo(t_philo *p, t_table *t);
 bool	check_must_eat(t_table *t);
+void	*reaper(void *data);
+bool	is_die(t_philo *p, t_table *t);
 
 #endif
