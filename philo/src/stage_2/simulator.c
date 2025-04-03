@@ -6,7 +6,7 @@
 /*   By: knakto <knakto@student.42bangkok.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 00:05:40 by knakto            #+#    #+#             */
-/*   Updated: 2025/03/29 00:58:28 by knakto           ###   ########.fr       */
+/*   Updated: 2025/04/03 10:30:28 by knakto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	eat_sleep_routine(t_philo *p, t_table *t)
 	p->last_meal = get_time();
 	ft_mutex(&t->meal_lock, MUTEX_UNLOCK);
 	ft_sleep(p->time_to_eat);
-	if (!t->stop)
+	if (!is_stop())
 	{
 		ft_mutex(&t->meal_lock, MUTEX_LOCK);
 		p->eat++;
