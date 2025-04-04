@@ -1,7 +1,7 @@
 NAME		= philo
 CC			= cc
 CFLAGS		= -g3 -pthread -Wall -Wextra -Werror -DDEBUG=$(DEBUG)
-DEBUG		= 1
+DEBUG		= 0
 
 OBJ_DIR		= $(BUILD_DIR)/obj
 BUILD_DIR	= build
