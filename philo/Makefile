@@ -36,7 +36,7 @@ $(NAME): $(OBJ)
 		@printf "\033[38;5;46m\033[1m⟪ Complete ⟫\033[0m\n"
 
 %.o: %.c Makefile
-	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 clean:
 	@rm -rf $(OBJ)
